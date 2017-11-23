@@ -1,0 +1,11 @@
+.docker-item {
+  height: 200px;
+  width: 200px;
+  background-color: aquamarine;
+  margin: 10px;
+}
+
+.docker-items {
+  display: flex;
+  list-style: none;
+}

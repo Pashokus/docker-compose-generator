@@ -1,3 +1,6 @@
 import React from 'react';
+import DockerItems from '../containers/DockerItems';
 
-export default () => <div>Hello</div>;
+export default () => <div>
+    <DockerItems />
+</div>;

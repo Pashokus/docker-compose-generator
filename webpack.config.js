@@ -13,6 +13,16 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loaders: ['babel-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: [{
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader"
+                }, {
+                    loader: "sass-loader"
+                }]
             }
         ]
     },
@@ -23,5 +33,6 @@ module.exports = {
                 to: path.resolve(__dirname, 'bundle/index.html')
             }
         ])
-    ]
+    ],
+    devtool: 'source-maps'
 };
