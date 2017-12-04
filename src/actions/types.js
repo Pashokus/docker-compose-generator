@@ -1,1 +1,2 @@
 export const ADD_DOCKER_ITEM = 'ADD_DOCKER_ITEM';
+export const DELETE_DOCKER_ITEM = 'DELETE_DOCKER_ITEM';

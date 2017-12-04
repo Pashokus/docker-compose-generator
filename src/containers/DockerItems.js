@@ -3,16 +3,20 @@ import { connect } from 'react-redux';
 import DockerItem from '../components/DockerItem';
 import AddDockerItem from '../components/AddDockerItem';
 import * as actions from '../actions/docker';
-import '../components/dockerItem.scss';
+import '../components/styles/dockerItem.scss';
 
 class DockerItems extends Component {
+    componentWillReceiveProps() {}
+
     render() {
-        const { dockerItems, addDockerInstance } = this.props;
+        const { dockerItems, addDockerInstance, deleteDockerItem } = this.props;
         return (
             <div>
-                <ul className={'docker-items'}>
-                    <AddDockerItem addDockerInstance={addDockerInstance} />
-                    { dockerItems.map(item => <DockerItem item={item} />) }
+                <ul className='docker-items'>
+                    <AddDockerItem key='add-section' addDockerInstance={addDockerInstance}/>
+                    { Object.keys(dockerItems).map((itemId) => {
+                        return <DockerItem item={dockerItems[itemId]} itemId={itemId} deleteDockerItem={deleteDockerItem} />;
+                    }) }
                 </ul>
             </div>
         );
@@ -22,7 +26,7 @@ class DockerItems extends Component {
 const mapStateToProps = (state) => {
     return {
         dockerItems: state.docker.items
-    }
+    };
 };
 
 export default connect(mapStateToProps, actions)(DockerItems);

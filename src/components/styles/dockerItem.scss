@@ -1,0 +1,22 @@
+.docker-item {
+  border: 1px solid black;
+  border-radius: 3%;
+}
+
+.docker-items {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.close-button {
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin: 5px;
+}
+
+.custom-form-styles {
+  padding: 20px 0 20px 0;
+}

@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
 import docker from './dockerReducer';
 
 const reducers = combineReducers({
-    docker
+    docker,
+    form
 });
 
 export default reducers;
