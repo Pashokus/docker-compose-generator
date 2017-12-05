@@ -20,7 +20,7 @@ export default class DockerItem extends Component {
         return (
             <li key={itemId}>
                 <div className='docker-item'>
-                    <div>
+                    <div className='close-button-container'>
                         <img
                             className='close-button'
                             alt='close_button'
@@ -29,9 +29,9 @@ export default class DockerItem extends Component {
                         />
                     </div>
                     <div>
-                        <ul>
+                        <ul className='list-group custom-list-styles'>
                             {Object.keys(item).map((key) => {
-                                return <li>
+                                return <li className='list-group-item'>
                                     <div>
                                         <span>{key}</span>
                                         <span> : </span>

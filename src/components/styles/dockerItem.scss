@@ -1,6 +1,10 @@
 .docker-item {
   border: 1px solid black;
   border-radius: 3%;
+  width: 380px;
+  height: 400px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .docker-items {
@@ -8,6 +12,11 @@
   list-style: none;
   flex-wrap: wrap;
   margin-top: 20px;
+}
+
+.close-button-container {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .close-button {
@@ -19,4 +28,8 @@
 
 .custom-form-styles {
   padding: 20px 0 20px 0;
+}
+
+.custom-list-styles {
+  padding: 20px;
 }

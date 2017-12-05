@@ -10,11 +10,22 @@ const renderInput = (field) => {
 };
 
 class AddInstanceForm extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onSubmit(data) {
+        this.props.onSubmit(data);
+        this.props.reset();
+    }
+
     render() {
-        const { handleSubmit, pristine, submitting, onSubmit } = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
 
         return (
-            <form className={'form-horizontal custom-form-styles'} onSubmit={handleSubmit(onSubmit)}>
+            <form className={'form-horizontal custom-form-styles'} onSubmit={handleSubmit(this.onSubmit)}>
                 <div className='form-group row'>
                     <label className='col-5 col-form-label' htmlFor="containerName">Container name: </label>
                     <Field name="containerName" component={renderInput} type="text" />
