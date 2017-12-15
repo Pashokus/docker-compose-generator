@@ -30,8 +30,8 @@ export default class DockerItem extends Component {
                     </div>
                     <div>
                         <ul className='list-group custom-list-styles'>
-                            {Object.keys(item).map((key) => {
-                                return <li className='list-group-item'>
+                            {Object.keys(item).map((key, id) => {
+                                return <li key={id} className='list-group-item'>
                                     <div>
                                         <span>{key}</span>
                                         <span> : </span>

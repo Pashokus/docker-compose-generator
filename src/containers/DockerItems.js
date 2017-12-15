@@ -14,8 +14,8 @@ class DockerItems extends Component {
             <div>
                 <ul className='docker-items'>
                     <AddDockerItem key='add-section' addDockerInstance={addDockerInstance}/>
-                    { Object.keys(dockerItems).map((itemId) => {
-                        return <DockerItem item={dockerItems[itemId]} itemId={itemId} deleteDockerItem={deleteDockerItem} />;
+                    { Object.keys(dockerItems).map((itemId, id) => {
+                        return <DockerItem key={id} item={dockerItems[itemId]} itemId={itemId} deleteDockerItem={deleteDockerItem} />;
                     }) }
                 </ul>
             </div>

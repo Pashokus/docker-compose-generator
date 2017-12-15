@@ -1,4 +1,10 @@
-import { ADD_DOCKER_ITEM, DELETE_DOCKER_ITEM } from './types';
+import axios from 'axios';
+import {
+    ADD_DOCKER_ITEM,
+    DELETE_DOCKER_ITEM,
+    SET_CREATION_LINK_STATUS
+} from './types';
+import { setLoadingStatus } from './index';
 
 export const addDockerInstance = (data) => {
     return {
@@ -14,3 +20,24 @@ export const deleteDockerItem = (itemId) => {
     };
 };
 
+export const generateConfig = (items) => {
+    return (dispatch) => {
+        dispatch(setLoadingStatus(true));
+
+        return axios.post('http://localhost:9000/generate', {items}).then((res) => {
+            dispatch(setCreatingLinkStatus(true));
+        }).catch((error) => {
+            dispatch(setCreatingLinkStatus(false));
+            console.warn(error);
+        }).then(() => {
+            dispatch(setLoadingStatus(false));
+        });
+    };
+};
+
+const setCreatingLinkStatus = (value) => {
+    return {
+        type: SET_CREATION_LINK_STATUS,
+        payload: value
+    }
+};
