@@ -51,7 +51,7 @@ class AddInstanceForm extends Component {
                     <Field name="volumes" component={renderInput} type="text" />
                 </div>
                 <div>
-                    <button className='btn btn-primary' type="submit" disabled={pristine || submitting}>Add</button>
+                    <button className='btn btn-primary' type="submit" disabled={pristine || submitting}>Добавить</button>
                 </div>
             </form>
         );

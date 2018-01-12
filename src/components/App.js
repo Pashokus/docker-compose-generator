@@ -6,19 +6,20 @@ import Button from '../containers/Button';
 
 class App extends Component {
     render() {
-        const { generateConfig, dockerItems } = this.props;
+        const { generateConfig, dockerItems, loading } = this.props;
 
         return (
-            <div>
+            <div className={ loading ? 'app-container-loading' : ''}>
                 <div className={'generate-button-section'} >
                     <h3>Добавьте как минимум один контейнер используя форму ниже, для создания конфига</h3>
                     <Button
-                        name={'Generate'}
+                        name={'Сгенирировать'}
                         onClickHandler={generateConfig}
                         dockerItems={dockerItems}
                     />
                 </div>
                 <DockerItems />
+                <div className={loading ? 'loading' : ''} />
             </div>
         );
     }
@@ -26,7 +27,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        dockerItems: state.docker.items
+        dockerItems: state.docker.items,
+        loading: state.base.loading
     }
 };
 

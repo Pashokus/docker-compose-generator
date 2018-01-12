@@ -24,13 +24,15 @@ export const generateConfig = (items) => {
     return (dispatch) => {
         dispatch(setLoadingStatus(true));
 
-        return axios.post('http://localhost:9000/generate', {items}).then((res) => {
+        return axios.post('http://localhost:9000/api/generator', {items}).then((res) => {
             dispatch(setCreatingLinkStatus(true));
         }).catch((error) => {
             dispatch(setCreatingLinkStatus(false));
             console.warn(error);
         }).then(() => {
-            dispatch(setLoadingStatus(false));
+            setTimeout(() => {
+                dispatch(setLoadingStatus(false));
+            }, 5000);
         });
     };
 };

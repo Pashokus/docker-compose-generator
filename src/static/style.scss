@@ -1,3 +1,5 @@
+$spinner-size: 120px;
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -6,4 +8,28 @@ html, body {
 .generate-button-section {
   margin-left: 40px;
   margin-top: 20px;
+}
+
+.loading {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  margin-top: -$spinner-size / 2;
+  margin-left: -$spinner-size / 2;
+  top: 50%;
+  left: 50%;
+  width: $spinner-size;
+  height: $spinner-size;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  z-index: 2;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.app-container-loading {
+  opacity: 0.5;
 }
