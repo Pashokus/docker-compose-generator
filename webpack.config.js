@@ -39,6 +39,12 @@ module.exports = {
                 from: path.resolve(__dirname, 'index.html'),
                 to: path.resolve(__dirname, 'bundle/index.html')
             }
+        ]),
+        new copyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'src/static'),
+                to: path.resolve(__dirname, 'bundle/resources')
+            }
         ])
     ],
     devtool: 'source-maps'

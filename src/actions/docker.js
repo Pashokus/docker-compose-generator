@@ -25,6 +25,15 @@ export const generateConfig = (items) => {
         dispatch(setLoadingStatus(true));
 
         return axios.post('http://localhost:9000/api/generator', {items}).then((res) => {
+            // if (res && res.data) {
+            //     const { data, metadata } = res.data;
+            //     const arr = new Int8Array(data.data);
+
+            //     const file = new File([arr], metadata.name);
+            //     const objUrl = URL.createObjectURL(file);
+
+            //     console.log(objUrl);
+            // }
             dispatch(setCreatingLinkStatus(true));
         }).catch((error) => {
             dispatch(setCreatingLinkStatus(false));
