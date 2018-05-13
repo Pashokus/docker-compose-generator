@@ -7,7 +7,8 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "lint": "eslint ./src --ext .js --ext .jsx",
-    "server": "nodemon ./server/app.babel.js",
+    "server:watch": "nodemon ./server/app.babel.js",
+    "server": "node ./server/app.babel.js",
     "start": "npm run build && npm run server"
   },
   "repository": {
