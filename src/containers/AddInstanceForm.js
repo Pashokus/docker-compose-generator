@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 const renderInput = (field) => {
     return (
         <div className='col-7'>
-            <input className='form-control' {...field.input} type={field.type}/>
+            <input className='form-control' {...field.input} type={field.type} />
         </div>
     );
 };
@@ -25,7 +25,7 @@ class AddInstanceForm extends Component {
         const { handleSubmit, pristine, submitting } = this.props;
 
         return (
-            <form className={'form-horizontal custom-form-styles'} onSubmit={handleSubmit(this.onSubmit)}>
+            <form className="form-horizontal custom-form-styles" onSubmit={handleSubmit(this.onSubmit)}>
                 <div className='form-group row'>
                     <label className='col-5 col-form-label' htmlFor="containerName">Container name: </label>
                     <Field name="containerName" component={renderInput} type="text" />

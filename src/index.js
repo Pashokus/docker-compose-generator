@@ -1,20 +1,33 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
-import App from './components/App';
 import './static/style.scss';
+import routes from './routes';
+import { AUTH_USER } from './actions/types';
 
-const store = createStore(
-    reducers,
-    applyMiddleware(thunk)
-);
+const createStoreWithMiddleware =
+  applyMiddleware(thunk, routerMiddleware(browserHistory))(createStore);
+const store = createStoreWithMiddleware(reducers);
+const history = syncHistoryWithStore(browserHistory, store);
 
-render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('app')
-);
+const token = sessionStorage.getItem('token');
+
+const renderHelper = () => {
+    return (
+        <Provider store={store}>
+            <Router history={history} routes={routes} />
+        </Provider>
+    );
+};
+
+if (token) {
+    store.dispatch({ type: AUTH_USER });
+}
+
+render(renderHelper(), document.getElementById('app'));
+

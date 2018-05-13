@@ -2,3 +2,7 @@ export const ADD_DOCKER_ITEM = 'ADD_DOCKER_ITEM';
 export const DELETE_DOCKER_ITEM = 'DELETE_DOCKER_ITEM';
 export const SET_LOADING_STATUS = 'SET_LOADING_STATUS';
 export const SET_CREATION_LINK_STATUS = 'SET_CREATION_LINK_STATUS';
+export const AUTH_USER = 'AUTH_USER';
+export const UNAUTH_USER = 'UNAUTH_USER';
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const USER = 'USER';

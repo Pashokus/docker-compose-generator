@@ -24,7 +24,7 @@ export const generateConfig = (items) => {
     return (dispatch) => {
         dispatch(setLoadingStatus(true));
 
-        return axios.post('http://localhost:9000/api/generator', {items}).then((res) => {
+        return axios.post('http://localhost:9000/api/generator', { items }).then((res) => {
             // if (res && res.data) {
             //     const { data, metadata } = res.data;
             //     const arr = new Int8Array(data.data);
@@ -50,5 +50,5 @@ const setCreatingLinkStatus = (value) => {
     return {
         type: SET_CREATION_LINK_STATUS,
         payload: value
-    }
+    };
 };

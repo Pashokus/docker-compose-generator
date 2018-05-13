@@ -31,13 +31,13 @@ export default class DockerItem extends Component {
                     <div>
                         <ul className='list-group custom-list-styles'>
                             {Object.keys(item).map((key, id) => {
-                                return <li key={id} className='list-group-item'>
+                                return (<li key={id} className='list-group-item'>
                                     <div>
                                         <span>{key}</span>
                                         <span> : </span>
                                         <span>{item[key]}</span>
                                     </div>
-                                </li>
+                                        </li>);
                             })}
                         </ul>
                     </div>
