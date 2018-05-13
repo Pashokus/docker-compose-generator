@@ -1,5 +1,5 @@
 import uuidv4 from 'uuid/v4';
-import { ADD_DOCKER_ITEM, DELETE_DOCKER_ITEM } from '../actions/types';
+import { ADD_DOCKER_ITEM, CLEAR_ITEMS, DELETE_DOCKER_ITEM } from '../actions/types';
 
 export default function (state = { items: {} }, action) {
     switch (action.type) {
@@ -14,6 +14,9 @@ export default function (state = { items: {} }, action) {
             const items = Object.assign({}, state.items);
             delete items[itemToDelete];
             return Object.assign({}, state, { items });
+        }
+        case CLEAR_ITEMS: {
+            return Object.assign({}, state, { items: {} });
         }
         default: {
             return state;

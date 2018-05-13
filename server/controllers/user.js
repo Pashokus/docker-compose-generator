@@ -1,6 +1,7 @@
 import jwt from 'jwt-simple';
 import User from '../models/user';
 import config from '../config';
+import { buildUserObject } from '../helpers';
 
 const getSeller = (req, res, next) => {
     const userId = jwt.decode(req.get('authorization'), config.secret);
@@ -11,12 +12,7 @@ const getSeller = (req, res, next) => {
         }
 
         if (user) {
-            const { _id } = user;
-            const updatedSeller = Object.assign({}, user._doc, { id: _id });
-            delete updatedSeller._id;
-            delete updatedSeller.password;
-            delete updatedSeller.__v;
-            return res.json({ user: updatedSeller });
+            return res.json({ user: buildUserObject(user) });
         }
 
         return next();

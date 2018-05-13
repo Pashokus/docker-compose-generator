@@ -17,7 +17,7 @@ const getUserFromConfig = (config) => {
     };
 };
 
-export const setLoadingStatus = (value) => {
+export const ssetLoadingStatus = (value) => {
     return {
         type: SET_LOADING_STATUS,
         payload: value
@@ -71,7 +71,7 @@ export function signUp(config) {
     };
 }
 
-export function logoutUser(isTimeout) {
+export function logoutUser() {
     return function (dispatch) {
         if (sessionStorage.getItem('token')) {
             dispatch({ type: UNAUTH_USER });
@@ -79,7 +79,7 @@ export function logoutUser(isTimeout) {
             dispatch({ type: USER, payload: undefined });
         }
 
-        browserHistory.push(isTimeout ? '/login' : '/');
+        browserHistory.push('/');
     };
 }
 
