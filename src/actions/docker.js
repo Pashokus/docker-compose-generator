@@ -39,7 +39,20 @@ export const save = (config) => {
 
 export const generateConfig = (config) => {
     return (dispatch) => {
-        const file = json2yaml.stringify(config);
+        const keys = Object.getOwnPropertyNames(config);
+
+        const configToConvert = keys.reduce((prev, curr) => {
+            const el = Object.assign({}, config[curr]);
+            const name = el.name;
+
+            delete el.name;
+
+            prev[name] = el;
+
+            return prev;
+        }, {});
+
+        const file = json2yaml.stringify(configToConvert);
         dispatch({ type: GENERATED_FILE, payload: file });
     };
 };

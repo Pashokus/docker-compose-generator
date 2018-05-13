@@ -27,8 +27,8 @@ class AddInstanceForm extends Component {
         return (
             <form className="form-horizontal custom-form-styles" onSubmit={handleSubmit(this.onSubmit)}>
                 <div className='form-group row'>
-                    <label className='col-5 col-form-label' htmlFor="containerName">Container name: </label>
-                    <Field name="containerName" component={renderInput} type="text" />
+                    <label className='col-5 col-form-label' htmlFor="containerName">Name: </label>
+                    <Field name="name" component={renderInput} type="text" />
                 </div>
                 <div className='form-group row'>
                     <label className='col-5 col-form-label' htmlFor="image">Image: </label>

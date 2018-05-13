@@ -7,12 +7,10 @@ class DownloadLink extends Component {
 
         if(file) {
             return (
-                <div>
-                    <a
-                        href={`data:text/plain;charset=utf-8,${encodeURIComponent(file)}`}
-                        download='docker-compose.yml'
-                    >docker-compose.yml</a>
-                </div>
+                <a
+                    href={`data:text/plain;charset=utf-8,${encodeURIComponent(file)}`}
+                    download='docker-compose.yml'
+                >docker-compose.yml</a>
             );
         } else {
             return null;
