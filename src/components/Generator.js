@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { generateConfig, save } from '../actions/docker';
 import DockerItems from '../containers/DockerItems';
 import Button from '../containers/Button';
+import DownloadLink from '../containers/DownloadLink';
 import Header from './Header';
 
 class Generator extends Component {
@@ -35,6 +36,7 @@ class Generator extends Component {
                         {
                             this.props.authenticated ? this.renderSaveButton() : ''
                         }
+                        <DownloadLink />
                     </div>
                     <DockerItems />
                     <div className={loading ? 'loading' : ''} />

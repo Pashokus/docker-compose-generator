@@ -1,5 +1,5 @@
 import uuidv4 from 'uuid/v4';
-import { ADD_DOCKER_ITEM, CLEAR_ITEMS, DELETE_DOCKER_ITEM } from '../actions/types';
+import { ADD_DOCKER_ITEM, CLEAR_ITEMS, DELETE_DOCKER_ITEM, GENERATED_FILE } from '../actions/types';
 
 export default function (state = { items: {} }, action) {
     switch (action.type) {
@@ -17,6 +17,9 @@ export default function (state = { items: {} }, action) {
         }
         case CLEAR_ITEMS: {
             return Object.assign({}, state, { items: {} });
+        }
+        case GENERATED_FILE: {
+            return Object.assign({}, state, { file: action.payload })
         }
         default: {
             return state;

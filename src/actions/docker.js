@@ -4,9 +4,11 @@ import {
     DELETE_DOCKER_ITEM,
     SET_CREATION_LINK_STATUS,
     USER,
-    CLEAR_ITEMS
+    CLEAR_ITEMS,
+    GENERATED_FILE
 } from './types';
 import { setLoadingStatus } from './index';
+import json2yaml from 'yamljs';
 
 export const addDockerInstance = (data) => {
     return {
@@ -23,7 +25,7 @@ export const deleteDockerItem = (itemId) => {
 };
 
 export const save = (config) => {
-    return  (dispatch) => {
+    return (dispatch) => {
         return axios.post('/configList', config, {
             headers: {
                 authorization: sessionStorage.getItem('token')
@@ -33,6 +35,13 @@ export const save = (config) => {
             dispatch({ type: USER, payload: response.data.user });
         });
     }
+};
+
+export const generateConfig = (config) => {
+    return (dispatch) => {
+        const file = json2yaml.stringify(config);
+        dispatch({ type: GENERATED_FILE, payload: file });
+    };
 };
 
 const setCreatingLinkStatus = (value) => {
