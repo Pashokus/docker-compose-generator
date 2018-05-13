@@ -2,6 +2,9 @@ const path = require('path');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+    node: {
+        fs: "empty"
+    },
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'bundle'),

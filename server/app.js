@@ -8,7 +8,10 @@ import routes from './routes/index';
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/my_database');
+const mongoUrl = 'mongodb://<dbuser>:<dbpassword>@ds119070.mlab.com:19070/docker-gen';
+// const mongoUrl = 'mongodb://localhost/my_database';
+
+mongoose.connect(mongoUrl);
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
