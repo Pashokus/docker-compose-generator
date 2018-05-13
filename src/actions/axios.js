@@ -1,3 +1,3 @@
 import axios from 'axios';
 
-export default axios.create({ baseURL: 'http://localhost:9000/api/' });
+export default axios.create({ baseURL: `${location.origin}/api` });

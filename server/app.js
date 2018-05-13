@@ -8,7 +8,7 @@ import routes from './routes/index';
 
 const app = express();
 
-const mongoUrl = 'mongodb://<dbuser>:<dbpassword>@ds119070.mlab.com:19070/docker-gen';
+const mongoUrl = 'mongodb://pshko:1234@ds119070.mlab.com:19070/docker-gen';
 // const mongoUrl = 'mongodb://localhost/my_database';
 
 mongoose.connect(mongoUrl);
