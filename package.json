@@ -7,7 +7,7 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "lint": "eslint ./src --ext .js --ext .jsx",
-    "server": "nodemon ./server/app.js",
+    "server": "nodemon ./server/app.babel.js",
     "start": "npm run build && npm run server"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "babel-preset-stage-1": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
     "copy-webpack-plugin": "4.2.1",
     "css-loader": "0.28.7",
     "eslint": "4.11.0",
@@ -43,8 +44,15 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "json2yaml": "^1.1.0",
+    "jwt-simple": "^0.5.1",
+    "mongoose": "^5.1.0",
+    "mongoose-type-email": "^1.0.5",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "prop-types": "^15.6.1",
     "react": "16.1.1",
     "react-dom": "16.1.1",

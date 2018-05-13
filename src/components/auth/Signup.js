@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router';
 import * as actions from '../../actions/index';
+import '../styles/signup.scss';
 
 class Signup extends Component {
     constructor(props) {
@@ -38,8 +39,9 @@ class Signup extends Component {
                     <form className="login-form" onSubmit={handleSubmit(this.handleFormSubmit)}>
                         <div>
                             <label>Email:</label>
-                            <div>
+                            <div className="form-group">
                                 <Field
+                                    className="form-control"
                                     name="email"
                                     component="input"
                                     type="email"
@@ -47,10 +49,11 @@ class Signup extends Component {
                                 />
                             </div>
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Username:</label>
                             <div>
                                 <Field
+                                    className="form-control"
                                     name="username"
                                     component="input"
                                     type="text"
@@ -58,10 +61,11 @@ class Signup extends Component {
                                 />
                             </div>
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Password:</label>
                             <div>
                                 <Field
+                                    className="form-control"
                                     name="password"
                                     component="input"
                                     type="password"
@@ -69,10 +73,11 @@ class Signup extends Component {
                                 />
                             </div>
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label>Confirm Password:</label>
                             <div>
                                 <Field
+                                    className="form-control"
                                     name="retypePassword"
                                     component="input"
                                     type="password"
@@ -82,7 +87,11 @@ class Signup extends Component {
                         </div>
                         {this.renderAlert()}
                         <div className="submit-container-alt">
-                            <button className="submit" action="submit" disabled={pristine || submitting}>Create Account</button>
+                            <button
+                                className="btn btn-primary"
+                                action="submit"
+                                disabled={pristine || submitting}
+                            >Create Account</button>
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router';
-import axios from 'axios';
+import axios from './axios';
 import {
     SET_LOADING_STATUS,
     AUTH_USER,
@@ -33,18 +33,8 @@ export function loginError(error) {
 
 export function loginUser(config) {
     return function (dispatch) {
-        const {
-            accessToken, id, email, password
-        } = config;
-        let user;
-
-        if (id && accessToken) {
-            user = {
-                email, password: 'false', accessToken, id
-            };
-        } else {
-            user = { email, password };
-        }
+        const { username, password } = config;
+        const user = { username, password };
 
         axios.post('/signin', user)
             .then((response) => {

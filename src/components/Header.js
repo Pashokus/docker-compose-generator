@@ -15,35 +15,35 @@ class Header extends Component {
         if (this.props.authenticated && this.props.user) {
             const { username } = this.props.user;
             return [
-                <li key="profile" style={{ textTransform: 'capitalize' }}>
+                <li className="nav-item active navbar-right" key="profile">
                     <Timer>
-                        <Link to="/profile">{username}</Link>
+                        <Link className="nav-link" to="/profile">{username}</Link>
                     </Timer>
                 </li>,
-                <li key="logoutButton">
-                    <a role="button" onClick={this.props.logoutUser}>Log out</a>
+                <li key="logoutButton" className="nav-item active navbar-right">
+                    <a className="nav-link" role="button" onClick={this.props.logoutUser}>Log out</a>
                 </li>,
             ];
         }
 
         return [
-            <li key="loginButton">
-                <Link to="/login">Login</Link>
+            <li className="nav-item active" key="loginButton">
+                <Link className="nav-link" to="/login">Login</Link>
             </li>,
-            <li key="signup-button">
-                <Link to="/signup">Sign Up</Link>
-            </li>,
+            <li className="nav-item active" key="signup-button">
+                <Link className="nav-link" to="/signup">Sign Up</Link>
+            </li>
         ];
     }
 
     render() {
         return (
-            <div className="header">
-                <div className="main-nav">
-                    <ul>
+            <div>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <ul className="nav justify-content-end">
                         {this.renderAuthButtons()}
                     </ul>
-                </div>
+                </nav>
             </div>
         );
     }
@@ -52,7 +52,7 @@ class Header extends Component {
 function mapStateToProps(state) {
     return {
         authenticated: state.auth.authenticated,
-        seller: state.auth.user
+        user: state.auth.user
     };
 }
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router';
 import * as actions from '../../actions/';
+import '../styles/login.scss';
 
 class Login extends Component {
     constructor(props) {
@@ -29,8 +30,7 @@ class Login extends Component {
         const { handleSubmit, pristine, submitting } = this.props;
 
         return (
-
-            <div className="auth-container full">
+            <div className="form-signin">
                 <div className="already-have-account">
                     <span><Link to="/signup">{'Actually, I don\'t have an account. Sign me up.'}</Link></span>
                 </div>
@@ -38,18 +38,20 @@ class Login extends Component {
                     <h2>Log into your Account</h2>
                     <form className="login-form" onSubmit={handleSubmit(this.handleFormSubmit)}>
                         <div>
-                            <label>Username:</label>
-                            <div>
+                            <div className="form-group">
+                                <label>Username:</label>
                                 <Field
+                                    className="form-control"
                                     name="username"
                                     component="input"
                                     type="test"
                                     placeholder="enter your username here"
                                 />
                             </div>
-                            <label>Password:</label>
-                            <div>
+                            <div className="form-group">
+                                <label>Password:</label>
                                 <Field
+                                    className="form-control"
                                     name="password"
                                     component="input"
                                     type="password"
@@ -59,7 +61,10 @@ class Login extends Component {
                         </div>
                         {this.renderAlert()}
                         <div className="submit-container">
-                            <button className="submit" action="submit" disabled={pristine || submitting}>Login</button>
+                            <button
+                                className="btn btn-primary"
+                                action="submit"
+                                disabled={pristine || submitting}>Login</button>
                         </div>
                     </form>
                 </div>
