@@ -42,7 +42,27 @@ export const generateConfig = (config) => {
         const keys = Object.getOwnPropertyNames(config);
 
         const configToConvert = keys.reduce((prev, curr) => {
-            const el = Object.assign({}, config[curr]);
+        	  const {
+        	  	ports,
+		          volumes,
+		          volumes_from
+	          } = config[curr];
+
+        	  let arrays = {};
+
+        	  if (ports) {
+        	  	arrays.ports = ports.split(',');
+	          }
+
+		        if (volumes) {
+			        arrays.volumes = volumes.split(',');
+		        }
+
+		        if (volumes_from) {
+			        arrays.volumes_from = volumes_from.split(',');
+		        }
+
+            const el = Object.assign({}, config[curr], arrays);
             const name = el.name;
 
             delete el.name;
