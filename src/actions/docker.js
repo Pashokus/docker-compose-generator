@@ -47,12 +47,12 @@ export const generateConfig = (config) => {
 
             delete el.name;
 
-            prev[name] = el;
+            prev.services[name] = el;
 
             return prev;
-        }, {});
+        }, { services: {} });
 
-        const file = json2yaml.stringify(configToConvert);
+        const file = json2yaml.stringify(configToConvert, 4);
         dispatch({ type: GENERATED_FILE, payload: file });
     };
 };
