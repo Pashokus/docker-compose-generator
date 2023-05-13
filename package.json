@@ -28,7 +28,7 @@
     "babel-register": "^6.26.0",
     "copy-webpack-plugin": "4.6.0",
     "css-loader": "6.7.3",
-    "eslint": "4.11.0",
+    "eslint": "4.19.1",
     "eslint-config-airbnb": "19.0.4",
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "6.0.2",
