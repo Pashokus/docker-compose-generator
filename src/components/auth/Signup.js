@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { signUp } from '../../actions/index.js';
 import '../styles/signup.scss';
+import AuthenticatedUser from './auth-user.js';
 
 class Signup extends Component {
     constructor(props) {
@@ -30,72 +31,74 @@ class Signup extends Component {
         const { handleSubmit, pristine, submitting } = this.props;
 
         return (
-            <div className="auth-container full">
-                <div className="already-have-account">
-                    <span><Link to="/login">Actually, I have an account. Log me in.</Link></span>
-                </div>
-                <div className="login-container">
-                    <h2>Create Account</h2>
-                    <form className="login-form" onSubmit={handleSubmit(this.handleFormSubmit)}>
-                        <div>
-                            <label>Email:</label>
+            <AuthenticatedUser>
+                <div className="auth-container full">
+                    <div className="already-have-account">
+                        <span><Link to="/login">Actually, I have an account. Log me in.</Link></span>
+                    </div>
+                    <div className="login-container">
+                        <h2>Create Account</h2>
+                        <form className="login-form" onSubmit={handleSubmit(this.handleFormSubmit)}>
+                            <div>
+                                <label>Email:</label>
+                                <div className="form-group">
+                                    <Field
+                                        className="form-control"
+                                        name="email"
+                                        component="input"
+                                        type="email"
+                                        placeholder="name@email.com"
+                                    />
+                                </div>
+                            </div>
                             <div className="form-group">
-                                <Field
-                                    className="form-control"
-                                    name="email"
-                                    component="input"
-                                    type="email"
-                                    placeholder="name@email.com"
-                                />
+                                <label>Username:</label>
+                                <div>
+                                    <Field
+                                        className="form-control"
+                                        name="username"
+                                        component="input"
+                                        type="text"
+                                        placeholder="your username here!"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label>Username:</label>
-                            <div>
-                                <Field
-                                    className="form-control"
-                                    name="username"
-                                    component="input"
-                                    type="text"
-                                    placeholder="your username here!"
-                                />
+                            <div className="form-group">
+                                <label>Password:</label>
+                                <div>
+                                    <Field
+                                        className="form-control"
+                                        name="password"
+                                        component="input"
+                                        type="password"
+                                        placeholder="your super secret passphrase"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label>Password:</label>
-                            <div>
-                                <Field
-                                    className="form-control"
-                                    name="password"
-                                    component="input"
-                                    type="password"
-                                    placeholder="your super secret passphrase"
-                                />
+                            <div className="form-group">
+                                <label>Confirm Password:</label>
+                                <div>
+                                    <Field
+                                        className="form-control"
+                                        name="retypePassword"
+                                        component="input"
+                                        type="password"
+                                        placeholder="confirm your passphrase"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label>Confirm Password:</label>
-                            <div>
-                                <Field
-                                    className="form-control"
-                                    name="retypePassword"
-                                    component="input"
-                                    type="password"
-                                    placeholder="confirm your passphrase"
-                                />
+                            {this.renderAlert()}
+                            <div className="submit-container-alt">
+                                <button
+                                    className="btn btn-primary"
+                                    action="submit"
+                                    disabled={pristine || submitting}
+                                >Create Account</button>
                             </div>
-                        </div>
-                        {this.renderAlert()}
-                        <div className="submit-container-alt">
-                            <button
-                                className="btn btn-primary"
-                                action="submit"
-                                disabled={pristine || submitting}
-                            >Create Account</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </AuthenticatedUser>
         );
     }
 }
@@ -104,7 +107,7 @@ function mapStateToProps(state) {
     return { errorMessage: state.auth.error };
 }
 
-let form  =  reduxForm({
+let form = reduxForm({
     form: 'signup'
 })(Signup);
 

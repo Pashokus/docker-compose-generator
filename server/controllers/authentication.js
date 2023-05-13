@@ -21,50 +21,43 @@ const signin = (req, res, next) => {
     }
 };
 
-const signup = (req, res, next) => {
-    const { email, username } = req.body;
-    let { password } = req.body;
-
-    if (!email || !password) {
+const signup = async (req, res, next) => {
+    if (!req.body.email || !req.body.password) {
         return res.status(422).send({ error: 'You have to provide email and password' });
     }
 
-    if (!username) {
+    if (!req.body.username) {
         return res.status(422).send({ error: 'You have to provide username' });
     }
 
-    User.findOne({ username }, (err, existingUser) => {
-        if (err) {
-            return next(err);
-        }
+    try {
+        const existingUser = await User.findOne({ username: req.body.username });
 
         if (existingUser) {
             return res.status(422).send({ error: 'Username is in use' });
         }
 
         const user = new User({
-            email, password, username
+            email: req.body.email, password: req.body.password, username: req.body.username
         });
 
-        user.save((err) => {
-            if (err) {
-                return next(err);
-            }
+        await user.save()
 
-            const {
-                username, email, _id
-            } = user;
+        const {
+            username, email, _id
+        } = user;
 
-            res.json({
-                token: tokenForUser(user),
-                user: {
-                    username,
-                    email,
-                    id: _id,
-                },
-            });
+        res.json({
+            token: tokenForUser(user),
+            user: {
+                username,
+                email,
+                id: _id,
+            },
         });
-    });
+    } catch (error) {
+        return next(error);
+    }
 };
 
 export default {

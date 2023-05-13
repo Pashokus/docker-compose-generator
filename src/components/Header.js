@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../actions/index.js';
-import Timer from './idle-timer.js';
 
 class Header extends Component {
     componentWillMount() {
@@ -16,9 +15,7 @@ class Header extends Component {
             const { username } = this.props.user;
             return [
                 <li className="nav-item active navbar-right" key="profile">
-                    <Timer>
-                        <Link className="nav-link" to="/profile">{username}</Link>
-                    </Timer>
+                    <Link className="nav-link" to="/profile">{username}</Link>
                 </li>,
                 <li key="logoutButton" className="nav-item active navbar-right">
                     <a className="nav-link" role="button" onClick={this.props.logoutUser}>Log out</a>

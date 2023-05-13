@@ -14,6 +14,8 @@ import {
 import Profile from './components/Profile.js';
 import Login from './components/auth/Login.js';
 import SignUp from './components/auth/Signup.js';
+import RequireAuth from './components/auth/require-auth.js';
+import AuthenticatedUser from './components/auth/auth-user.js';
 
 
 const store = configureStore({

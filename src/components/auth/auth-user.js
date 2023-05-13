@@ -1,35 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-export default function (ComposedComponent) {
-    class AuthenticatedUser extends Component {
-    static contextTypes = {
-        router: PropTypes.object
-    };
+const AuthenticatedUser = (props) => {
+    const navigate = useNavigate();
+    const authenticated = useSelector(state => state.auth.authenticated);
 
-    componentWillMount() {
-        if (this.props.authenticated) {
-            this.context.router.push('/');
+    useEffect(() => {
+        if (authenticated) {
+            navigate('/');
         }
-    }
+    }, [authenticated]) 
 
-    componentWillUpdate(nextProps) {
-        if (nextProps.authenticated) {
-            this.context.router.push('/');
-        }
-    }
-
-    render() {
-        return <ComposedComponent {...this.props} />;
-    }
-    }
-
-    function mapStateToProps(state) {
-        return {
-            authenticated: state.auth.authenticated
-        };
-    }
-
-    return connect(mapStateToProps)(AuthenticatedUser);
+    return props.children;
 }
+
+export default AuthenticatedUser;

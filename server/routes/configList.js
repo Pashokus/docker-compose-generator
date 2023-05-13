@@ -1,17 +1,15 @@
 import express from 'express';
 import User from '../models/user.js';
-import {buildUserObject} from "../helpers.js";
+import { buildUserObject } from "../helpers.js";
 
 const router = new express.Router();
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     const config = req.body;
     const { _id } = req.user;
 
-    User.findOne({ _id }, (err, user) => {
-        if (err) {
-           return next(err);
-        }
+    try {
+        const user = await User.findOne({ _id })
 
         if (user) {
             user.files.push(config);
@@ -29,9 +27,11 @@ router.post('/', (req, res, next) => {
                 return res.json({ error: 'problems with updating current user' });
             })
         } else {
-            return res.json({ error: 'there is no authenticated user'});
+            return res.json({ error: 'there is no authenticated user' });
         }
-    });
+    } catch (err) {
+        return next(err);
+    }
 });
 
 export default router;

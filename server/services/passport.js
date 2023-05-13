@@ -14,11 +14,9 @@ function tokenForUser(user) {
     return jwt.encode({ sub: user.id ? user.id : user._id }, config.secret);
 }
 
-const LocalLogin = new LocalStrategy(localLoginOptions, ((req, username, password, done) => {
-    User.findOne({ username }, (err, user) => {
-        if (err) {
-            return done(err);
-        }
+const LocalLogin = new LocalStrategy(localLoginOptions, (async (req, username, password, done) => {
+    try {
+        const user = await User.findOne({ username });
 
         if (user) {
             user.comparePassword(password, (err, isMatch) => {
@@ -35,7 +33,9 @@ const LocalLogin = new LocalStrategy(localLoginOptions, ((req, username, passwor
         } else {
             return done(null, false);
         }
-    });
+    } catch (err) {
+        return done(err);
+    }
 }));
 
 const jwtOptions = {
@@ -43,16 +43,17 @@ const jwtOptions = {
     secretOrKey: config.secret,
 };
 
-const jwtLogin = new Strategy(jwtOptions, ((payload, done) => {
-    User.findById(payload.sub, (err, user) => {
-        if (err) {
-            return done(err);
-        }
+const jwtLogin = new Strategy(jwtOptions, (async (payload, done) => {
+    try {
+        const user = await User.findById(payload.sub);
 
         if (user) {
             return done(null, user);
         }
-    });
+    } catch (err) {
+        return done(err);
+
+    }
 }));
 
 passport.use(jwtLogin);

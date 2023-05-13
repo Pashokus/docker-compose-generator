@@ -1,4 +1,3 @@
-import { redirect } from 'react-router-dom';
 import axios from './axios.js';
 import {
     SET_LOADING_STATUS,
@@ -43,8 +42,6 @@ export function loginUser(config) {
                     dispatch({ type: USER, payload: response.data.user });
 
                     sessionStorage.setItem('token', response.data.token);
-
-                    return redirect('/');
                 }
             })
             .catch(() => {
@@ -63,7 +60,6 @@ export function signUp(config) {
                 dispatch({ type: USER, payload: response.data.user });
 
                 sessionStorage.setItem('token', response.data.token);
-                browserHistory.push('/');
             })
             .catch((error) => {
                 dispatch(loginError(error.response.data.error));
@@ -78,8 +74,6 @@ export function logoutUser() {
             sessionStorage.removeItem('token');
             dispatch({ type: USER, payload: undefined });
         }
-
-        browserHistory.push('/');
     };
 }
 
