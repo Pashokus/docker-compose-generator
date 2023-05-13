@@ -3,20 +3,20 @@ import {
     UNAUTH_USER,
     AUTH_ERROR,
     USER
-} from '../actions/types';
+} from '../actions/types.js';
 
 export default function (state = {
     authenticated: false,
 }, action) {
     switch (action.type) {
         case AUTH_USER:
-            return { ...state, error: '', authenticated: true };
+            return Object.assign({}, state, { error: '', authenticated: true });
         case UNAUTH_USER:
-            return { ...state, authenticated: false };
+            return Object.assign({}, state, { authenticated: false });
         case AUTH_ERROR:
-            return { ...state, error: action.payload };
+            return Object.assign({}, state, { error: action.payload });
         case USER:
-            return { ...state, user: action.payload };
+            return Object.assign({}, state, { user: action.payload });
         default:
             return state;
     }

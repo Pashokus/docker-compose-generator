@@ -1,4 +1,4 @@
-import axios from './axios';
+import axios from './axios.js';
 import {
     ADD_DOCKER_ITEM,
     DELETE_DOCKER_ITEM,
@@ -6,9 +6,8 @@ import {
     USER,
     CLEAR_ITEMS,
     GENERATED_FILE
-} from './types';
-import { setLoadingStatus } from './index';
-import json2yaml from 'yamljs';
+} from './types.js';
+import { stringify } from 'yaml'
 
 export const addDockerInstance = (data) => {
     return {
@@ -72,7 +71,7 @@ export const generateConfig = (config) => {
             return prev;
         }, { services: {} });
 
-        const file = json2yaml.stringify(configToConvert, 4);
+        const file = stringify(configToConvert, 4);
         dispatch({ type: GENERATED_FILE, payload: file });
     };
 };

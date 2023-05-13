@@ -1,7 +1,7 @@
 import jwt from 'jwt-simple';
-import User from '../models/user';
-import config from '../config';
-import { buildUserObject } from '../helpers';
+import User from '../models/user.js';
+import config from '../config.js';
+import { buildUserObject } from '../helpers.js';
 
 const getSeller = (req, res, next) => {
     const userId = jwt.decode(req.get('authorization'), config.secret);

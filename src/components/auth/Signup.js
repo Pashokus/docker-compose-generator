@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { Link } from 'react-router';
-import * as actions from '../../actions/index';
+import { Link } from 'react-router-dom';
+import { signUp } from '../../actions/index.js';
 import '../styles/signup.scss';
 
 class Signup extends Component {
@@ -108,6 +108,4 @@ let form  =  reduxForm({
     form: 'signup'
 })(Signup);
 
-form = connect(mapStateToProps, actions)(form);
-
-export default form;
+export default connect(mapStateToProps, { signUp })(form);

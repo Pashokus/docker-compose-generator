@@ -1,10 +1,10 @@
 import express from 'express';
 import passport from 'passport';
-import user from './user';
-import signup from './signup';
-import signin from './signin';
-import configList from './configList';
-import '../services/passport';
+import user from './user.js';
+import signup from './signup.js';
+import signin from './signin.js';
+import configList from './configList.js';
+import '../services/passport.js';
 
 const reqiureAuth = passport.authenticate('jwt', { session: false });
 const reqiureSignin = passport.authenticate('local', { session: false });

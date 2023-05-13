@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { generateConfig, save } from '../actions/docker';
-import DockerItems from '../containers/DockerItems';
-import Button from '../containers/Button';
-import DownloadLink from '../containers/DownloadLink';
-import Header from './Header';
+import { generateConfig, save } from '../actions/docker.js';
+import DockerItems from '../containers/DockerItems.js';
+import Button from '../containers/Button.js';
+import DownloadLink from '../containers/DownloadLink.js';
+import Header from './Header.js';
 
 class Generator extends Component {
     renderSaveButton() {

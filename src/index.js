@@ -1,33 +1,56 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
-import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import reducers from './reducers';
 import './static/style.scss';
-import routes from './routes';
-import { AUTH_USER } from './actions/types';
+import { AUTH_USER } from './actions/types.js';
+import Generator from './components/Generator.js';
+import { configureStore } from '@reduxjs/toolkit'
+import rootReducer from './reducers/index.js'
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
+import Profile from './components/Profile.js';
+import Login from './components/auth/Login.js';
+import SignUp from './components/auth/Signup.js';
 
-const createStoreWithMiddleware =
-  applyMiddleware(thunk, routerMiddleware(browserHistory))(createStore);
-const store = createStoreWithMiddleware(reducers);
-const history = syncHistoryWithStore(browserHistory, store);
+
+const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+})
+
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Generator />,
+    },
+    {
+        path: "/profile",
+        element: <Profile />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/signup",
+        element: <SignUp />,
+    },
+]);
 
 const token = sessionStorage.getItem('token');
-
-const renderHelper = () => {
-    return (
-        <Provider store={store}>
-            <Router history={history} routes={routes} />
-        </Provider>
-    );
-};
 
 if (token) {
     store.dispatch({ type: AUTH_USER });
 }
 
-render(renderHelper(), document.getElementById('app'));
-
+const container = document.getElementById('app');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(
+    <Provider store={store}>
+        <RouterProvider router={router} />
+    </Provider>
+);

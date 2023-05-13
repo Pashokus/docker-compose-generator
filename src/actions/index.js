@@ -1,12 +1,12 @@
-import { browserHistory } from 'react-router';
-import axios from './axios';
+import { redirect } from 'react-router-dom';
+import axios from './axios.js';
 import {
     SET_LOADING_STATUS,
     AUTH_USER,
     UNAUTH_USER,
     AUTH_ERROR,
     USER
-} from './types';
+} from './types.js';
 
 const getUserFromConfig = (config) => {
     const {
@@ -44,7 +44,7 @@ export function loginUser(config) {
 
                     sessionStorage.setItem('token', response.data.token);
 
-                    browserHistory.push('/');
+                    return redirect('/');
                 }
             })
             .catch(() => {

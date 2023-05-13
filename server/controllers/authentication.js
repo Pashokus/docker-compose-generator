@@ -1,6 +1,6 @@
 import jwt from 'jwt-simple';
-import User from '../models/user';
-import config from '../config';
+import User from '../models/user.js';
+import config from '../config.js';
 
 const tokenForUser = user => jwt.encode({ sub: user.id ? user.id : user._id }, config.secret);
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DockerItem from '../components/DockerItem';
-import AddDockerItem from '../components/AddDockerItem';
-import * as actions from '../actions/docker';
+import DockerItem from '../components/DockerItem.js';
+import AddDockerItem from '../components/AddDockerItem.js';
+import * as actions from '../actions/docker.js';
 import '../components/styles/dockerItem.scss';
 
 class DockerItems extends Component {
