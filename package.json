@@ -60,7 +60,7 @@
     "redux": "4.2.1",
     "redux-form": "8.3.10",
     "redux-thunk": "2.4.2",
-    "uuid": "9.0.0",
+    "uuid": "11.1.1",
     "yaml": "^2.2.2"
   },
   "babel": {
